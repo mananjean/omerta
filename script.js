@@ -1,17 +1,20 @@
-let nom = "";
-let age = 0;
-let sexe = "";
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".menu");
 
-function init() {
-    nom = document.getElementById("name").value;
-    age = document.getElementById("age").value;
-    sexe = document.getElementById("sexe").value;
-}
+  // Toggle du menu au clic sur le bouton
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // empêche de fermer directement
+    menu.classList.toggle("open");
+  });
 
-function envoyerMessage() {
-    // Code pour envoyer le message
-  document.getElementById("message").innerHTML = "Message envoyé";
-}
+  // Empêche la fermeture si on clique dans le menu
+  menu.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
-// Ajoutez un événement au bouton pour appeler la fonction
-document.getElementById("Submit").addEventListener("click", envoyerMessage);
+  // Ferme le menu si on clique ailleurs
+  document.addEventListener("click", () => {
+    menu.classList.remove("open");
+  });
+});
